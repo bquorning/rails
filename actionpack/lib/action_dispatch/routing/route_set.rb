@@ -88,13 +88,8 @@ module ActionDispatch
         end
 
         def clear!
-          @path_helpers.each do |helper|
-            @path_helpers_module.send :undef_method, helper
-          end
-
-          @url_helpers.each do |helper|
-            @url_helpers_module.send  :undef_method, helper
-          end
+          @path_helpers_module = Module.new
+          @url_helpers_module  = Module.new
 
           @routes.clear
           @path_helpers.clear
